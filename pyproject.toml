@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "satx"
+version = "1.0.0"
+description = "Terminal satellite and ISM monitoring for HackRF One on macOS"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Eric Benner" }]
+keywords = ["satellite", "apt", "lrpt", "ism", "hackrf", "sdr"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Communications :: Ham Radio",
+]
+dependencies = [
+    "numpy>=1.24",
+    "pillow>=10.0",
+    "rich>=13.0",
+    "faster-whisper>=1.0",
+    "sounddevice>=0.4.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.0",
+    "build>=1.0",
+    "pytest>=8.0",
+    "twine>=5.0",
+]
+
+[project.scripts]
+satx = "satx.app.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ericbenner/satx"
+Repository = "https://github.com/ericbenner/satx"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["satx*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311", "py312", "py313"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
